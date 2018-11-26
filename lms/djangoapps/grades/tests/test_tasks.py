@@ -237,8 +237,8 @@ class RecalculateSubsectionGradeTest(HasCourseWithProblemsMixin, ModuleStoreTest
         )
 
     @ddt.data(
-        (ModuleStoreEnum.Type.mongo, 1, 16),
-        (ModuleStoreEnum.Type.split, 3, 16),
+        (ModuleStoreEnum.Type.mongo, 1, 17),
+        (ModuleStoreEnum.Type.split, 3, 17),
     )
     @ddt.unpack
     def test_persistent_grades_not_enabled_on_course(self, default_store, num_mongo_queries, num_sql_queries):
@@ -252,8 +252,8 @@ class RecalculateSubsectionGradeTest(HasCourseWithProblemsMixin, ModuleStoreTest
             self.assertEqual(len(PersistentSubsectionGrade.bulk_read_grades(self.user.id, self.course.id)), 0)
 
     @ddt.data(
-        (ModuleStoreEnum.Type.mongo, 1, 33),
-        (ModuleStoreEnum.Type.split, 3, 33),
+        (ModuleStoreEnum.Type.mongo, 1, 34),
+        (ModuleStoreEnum.Type.split, 3, 34),
     )
     @ddt.unpack
     def test_persistent_grades_enabled_on_course(self, default_store, num_mongo_queries, num_sql_queries):
