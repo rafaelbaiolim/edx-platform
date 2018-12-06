@@ -12,7 +12,6 @@ from rest_framework.pagination import CursorPagination
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from six import text_type
-from util.date_utils import to_timestamp
 
 from courseware.courses import get_course_with_access
 from edx_rest_framework_extensions import permissions
@@ -46,6 +45,8 @@ from track.event_transaction_utils import (
     get_event_transaction_type,
     set_event_transaction_type
 )
+from util.date_utils import to_timestamp
+from util.query import use_read_replica_if_available
 from xmodule.util.misc import get_default_short_labeler
 
 log = logging.getLogger(__name__)
@@ -287,7 +288,9 @@ class GradeViewMixin(DeveloperErrorViewMixin):
             'is_active': True,
         }
         filter_kwargs.update(course_enrollment_filter or {})
-        enrollments_in_course = CourseEnrollment.objects.filter(**filter_kwargs)
+        enrollments_in_course = use_read_replica_if_available(
+            CourseEnrollment.objects.filter(**filter_kwargs)
+        )
         if related_models:
             enrollments_in_course = enrollments_in_course.select_related(*related_models)
 
