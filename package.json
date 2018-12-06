@@ -63,10 +63,10 @@
     "which-country": "1.0.0"
   },
   "devDependencies": {
-    "axe-core": "3.1.2",
     "@edx/stylelint-config-edx": "1.1.0",
+    "axe-core": "3.1.2",
     "babel-jest": "23.0.1",
-    "edx-custom-a11y-rules": "1.0.5",
+    "edx-custom-a11y-rules": "github:edx/edx-custom-a11y-rules#mroytman/update-axe-core",
     "enzyme": "3.3.0",
     "enzyme-adapter-react-16": "1.1.1",
     "eslint-config-edx": "3.0.1",
